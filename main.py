@@ -134,11 +134,11 @@ def mirror_int(n):
     :param n: Numar intreg, n >= 0
     :return: Oglinditul numarului n
     """
-    mirror = 0
+    mirrored = 0
     while (n != 0):
-        mirror = mirror * 10 + n % 10
+        mirrored = mirrored * 10 + n % 10
         n = n // 10
-    return mirror
+    return mirrored
 
 
 def test_mirror_int():
@@ -160,8 +160,8 @@ def show_mirrored_lists(set1, set2, set3):
             result2.append(mirror_int(set2[i]))
         else:
             result2.append(set2[i])
-    print(result1)
-    print(result2)
+    print(f"Dupa procesare, prima multime devine {result1}")
+    print(f"Dupa procesare, a doua multime devine {result2}")
 
 
 def main():
