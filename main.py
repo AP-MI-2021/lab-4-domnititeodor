@@ -94,13 +94,29 @@ def test_is_palindrome():
     assert is_palindrome(1) == True
 
 
-def show_concatanated_palindromes(set1, set2):
+def concatanate_palindromes(set1, set2):
+    """
+    Determina lista de palindroame obtinuta prin concatenarea elementelor de pe pozitii egale din cele doua liste
+    :param set1: Lista de numere intregi
+    :param set2: Lista de umere intregi
+    :return: Lista cu proprietatea data
+    """
     n = min(len(set1), len(set2))
     result = []
     for i in range(n):
         concat = int(str(set1[i]) + str(set2[i]))
         if is_palindrome(concat):
             result.append(concat)
+    return result
+
+
+def test_concatanate_palindromes():
+    assert concatanate_palindromes([12, 22, 36, 11], [21, 23, 63, 55, 424]) == [1221, 3663]
+    assert concatanate_palindromes([1, 2, 3, 4], [1, 2, 3, 4]) == [11, 22, 33, 44]
+
+
+def show_concatanated_palindromes(set1, set2):
+    result = concatanate_palindromes(set1, set2)
     if (len(result)) == 0:
         print(f"Nu exista elemente in multimile {set1} si {set2} care sa fie palindroame prin concatenare")
     else:
@@ -110,8 +126,8 @@ def show_concatanated_palindromes(set1, set2):
 def divisible_by_set3(x, set3):
     """
     Determina daca un numar este divizibil cu toate elementele dintr-o lista data
-    :param x: Numarul dat spre verificare
-    :param set3: Lista cu elemente date spre verificare
+    :param x: Numarul intreg dat spre verificare
+    :param set3: Lista cu elemente intregi date spre verificare
     :return: True, daca numarul este divizibil cu toate elementele din lista / False, in caz contrar
     """
     divisible = True
@@ -147,19 +163,30 @@ def test_mirror_int():
     assert mirror_int(2) == 2
 
 
-def show_mirrored_lists(set1, set2, set3):
-    result1 = []
-    result2 = []
+def get_mirrored_lists(set1, set3):
+    """
+    Determina lista rezultata prin oglindirea elementelor divizibile cu toate elementele dintr-o lista data
+    :param set1: Lista de nr intregi data spre modificare
+    :param set3: Lista de nr intregi a carei elemente sunt date spre verificarea divizibilitatii
+    :return: Lista de oglindite/neoglindite
+    """
+    result = []
     for i in range(len(set1)):
         if divisible_by_set3(set1[i], set3):
-            result1.append(mirror_int(set1[i]))
+            result.append(mirror_int(set1[i]))
         else:
-            result1.append(set1[i])
-    for i in range(len(set2)):
-        if divisible_by_set3(set2[i], set3):
-            result2.append(mirror_int(set2[i]))
-        else:
-            result2.append(set2[i])
+            result.append(set1[i])
+    return result
+
+
+def test_get_mirrored_lists():
+    assert get_mirrored_lists([12, 22, 36, 363], [1, 2, 3, 4]) == [21, 22, 63, 363]
+    assert get_mirrored_lists([22, 23, 36, 55, 363], [1, 2, 3, 4]) == [22, 23, 63, 55, 363]
+
+
+def show_mirrored_lists(set1, set2, set3):
+    result1 = get_mirrored_lists(set1, set3)
+    result2 = get_mirrored_lists(set2, set3)
     print(f"Dupa procesare, prima multime devine {result1}")
     print(f"Dupa procesare, a doua multime devine {result2}")
 
@@ -191,5 +218,7 @@ if __name__ == '__main__':
     test_count_evens()
     test_is_palindrome()
     test_divisible_by_set3()
+    test_get_mirrored_lists()
     test_mirror_int()
+    test_concatanate_palindromes()
     main()
