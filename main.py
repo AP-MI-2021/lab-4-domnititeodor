@@ -94,7 +94,7 @@ def test_is_palindrome():
     assert is_palindrome(1) == True
 
 
-def concatanate_palindromes(set1, set2):
+def get_concatanate_palindromes(set1, set2):
     """
     Determina lista de palindroame obtinuta prin concatenarea elementelor de pe pozitii egale din cele doua liste
     :param set1: Lista de numere intregi
@@ -111,8 +111,9 @@ def concatanate_palindromes(set1, set2):
 
 
 def test_concatanate_palindromes():
-    assert concatanate_palindromes([12, 22, 36, 11], [21, 23, 63, 55, 424]) == [1221, 3663]
-    assert concatanate_palindromes([1, 2, 3, 4], [1, 2, 3, 4]) == [11, 22, 33, 44]
+    assert get_concatanate_palindromes([12, 22, 36, 11], [21, 23, 63, 55, 424]) == [1221, 3663]
+    assert get_concatanate_palindromes([1, 2, 3, 4], [1, 2, 3, 4]) == [11, 22, 33, 44]
+    assert get_concatanate_palindromes([2, 4, 7], [3, 5, 8]) == []
 
 
 def show_concatanated_palindromes(set1, set2):
@@ -182,6 +183,7 @@ def get_mirrored_lists(set1, set3):
 def test_get_mirrored_lists():
     assert get_mirrored_lists([12, 22, 36, 363], [1, 2, 3, 4]) == [21, 22, 63, 363]
     assert get_mirrored_lists([22, 23, 36, 55, 363], [1, 2, 3, 4]) == [22, 23, 63, 55, 363]
+    assert get_mirrored_lists([2, 5, 8, 3], [10, 12, 14]) == [2,5,8,3]
 
 
 def show_mirrored_lists(set1, set2, set3):
