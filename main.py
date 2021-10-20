@@ -1,6 +1,6 @@
 def show_menu():
     print('1. Citire multimi')
-    print('2. Verificare daca cele doua liste au acelasi numar de elemente pare')
+    print('2. Verificare daca cele doua multimi au acelasi numar de elemente pare')
     print('3. Intersectia celor doua multimi')
     print('4. Palindroamele obtinute prin concatenarea elementelor de pe aceeasi pozitie')
     print('5. Procesarea elementelor divizibile')
@@ -65,18 +65,17 @@ def show_intersection_sets(set1, set2):
     intset2 = set(set2)
     intersection = intset1.intersection(intset2)
     if len(intersection) == 0:
-        print("Multimea vida")
+        print(f"Intersectia multimilor {set1} si {set2} este multimea vida")
     else:
-        print(intersection)
+        print(f"Intersectia celor doua multimi este: {intersection}")
 
 
 def is_palindrome(n):
     """
     Determina daca un numar este palindrom
-    :param n: numarul intreg dat spre verificare
+    :param n: Numarul intreg dat spre verificare
     :return: True, n palindrom / False, n nepalindrom
     """
-
     copie = n
     oglindit = 0
     while (n != 0):
@@ -103,9 +102,9 @@ def show_concatanated_palindromes(set1, set2):
         if is_palindrome(concat):
             result.append(concat)
     if (len(result)) == 0:
-        print("Nu exista elemente care sa fie palindroame prin concatenare")
+        print(f"Nu exista elemente in multimile {set1} si {set2} care sa fie palindroame prin concatenare")
     else:
-        print(f"Palindroamele rezultate sunt {result}")
+        print(f"Palindroamele rezultate din multimile {set1} si {set2} sunt {result}")
 
 
 def divisible_by_set3(x, set3):
@@ -115,7 +114,6 @@ def divisible_by_set3(x, set3):
     :param set3: Lista cu elemente date spre verificare
     :return: True, daca numarul este divizibil cu toate elementele din lista / False, in caz contrar
     """
-
     divisible = True
     for i in range(len(set3)):
         if x % set3[i] != 0:
@@ -124,10 +122,16 @@ def divisible_by_set3(x, set3):
     return divisible
 
 
+def test_divisible_by_set3():
+    assert divisible_by_set3(3, [1, 3]) == True
+    assert divisible_by_set3(10, [3, 4, 7]) == False
+    assert divisible_by_set3(12, [1, 2, 3, 4, 6, 12]) == True
+
+
 def mirror_int(n):
     """
     Determina oglinditul unui numar intreg dat
-    :param n: n, numar intreg
+    :param n: Numar intreg, n >= 0
     :return: Oglinditul numarului n
     """
     mirror = 0
@@ -186,5 +190,6 @@ def main():
 if __name__ == '__main__':
     test_count_evens()
     test_is_palindrome()
+    test_divisible_by_set3()
     test_mirror_int()
     main()
